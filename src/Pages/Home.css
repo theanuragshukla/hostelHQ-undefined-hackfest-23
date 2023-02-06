@@ -1,0 +1,35 @@
+.image{
+    height: 600px;
+    width: 600px;
+}
+
+
+@media screen and (max-width:786px) {
+    .about{
+        width: 100%;
+        bottom: 0;
+
+        
+    }
+    #heading{
+        /* font-variant: h4; */
+        font-size: 60px;
+        }
+
+    
+    
+}
+@media screen and (max-width:786px) {
+    .imageOut{
+        height: 300px;
+        width: 300px;
+        /* position: absolute; */
+        top: 0;
+        left: 40px;
+
+        
+    }
+
+    
+    
+}

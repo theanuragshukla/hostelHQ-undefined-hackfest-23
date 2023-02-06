@@ -1,0 +1,84 @@
+CREATE TABLE wardens (
+		"id" serial not null,
+		"name" varchar(100),
+		"email" varchar(200),
+		"pass" text,
+		"uid" varchar(16),
+		"creation" timestamp default current_timestamp,
+		"updated" timestamp default current_timestamp);
+
+
+CREATE TABLE students (
+		"id" serial not null,
+		"name" varchar(100),
+		"email" varchar(200),
+		"pass" text,
+		"phone" text, 
+		"institute" text, 
+		"uid" varchar(16),
+		"creation" timestamp default current_timestamp,
+		"updated" timestamp default current_timestamp);
+
+
+CREATE TABLE staffs (
+		"id" serial not null,
+		"name" varchar(100),
+		"email" varchar(200),
+		"pass" text,
+		"phone" text, 
+		"uid" varchar(16),
+		"creation" timestamp default current_timestamp,
+		"updated" timestamp default current_timestamp);
+
+
+
+CREATE TABLE buildings (
+		"id" serial not null,
+		"name" varchar(100),
+		"floors" integer, 
+		"warden" varchar(16), 
+		"uid" varchar(16),
+		"creation" timestamp default current_timestamp,
+		"updated" timestamp default current_timestamp);
+
+
+CREATE TABLE floors (
+		"id" serial not null,
+		"building" varchar(16),
+		"number" INT NOT NULL, 
+		"rooms" integer, 
+		"uid" varchar(16),
+		"creation" timestamp default current_timestamp,
+		"updated" timestamp default current_timestamp, 
+		FOREIGN KEY (building) REFERENCES buildings (uid));
+
+
+CREATE TABLE rooms (
+		"id" serial not null,
+		"number" varchar(10),
+		"floor" varchar(16),
+		"building" varchar(16), 
+		"free" boolean default true,
+		"uid" varchar(16),
+		"creation" timestamp default current_timestamp,
+		"updated" timestamp default current_timestamp, 
+		FOREIGN KEY (floor) REFERENCES floors (uid), 
+		FOREIGN KEY (building) REFERENCES buildings (uid));
+
+
+CREATE TABLE allotments (
+		"id" serial not null,
+		"room" varchar(16) not null, 
+		"to" varchar(16) not null, 
+		"creation" timestamp default current_timestamp,
+		"updated" timestamp default current_timestamp, 
+		FOREIGN KEY (room) REFERENCES rooms (uid), 
+		FOREIGN KEY (to) REFERENCES students (uid)
+		);
+
+
+CREATE TABLE mess (
+		"id" serial not null, 
+		"creation" timestamp default current_timestamp,
+		"updated" timestamp default current_timestamp);
+
